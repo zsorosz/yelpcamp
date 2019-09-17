@@ -27,6 +27,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 // Campground.create(
 //     {
 //         name: "Granite Hill",
@@ -59,7 +64,7 @@ app.get("/campgrounds", function(req, res){
         if(err){
             console.log(err);
         } else{
-            res.render("campgrounds/index", {campgrounds: allCampgrounds});
+            res.render("campgrounds/index", {campgrounds: allCampgrounds, currentUser: req.user});
         }
     });
 });
