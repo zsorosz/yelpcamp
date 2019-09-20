@@ -38,6 +38,9 @@
                             <p><%= comment.text %>
                             </p>
                             <a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                            <form class="d-inline" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <input class="btn btn-sm btn-danger" type="submit" value="Delete">
+                            </form>
                         </div>
                     </div>
                 <% }) %>
