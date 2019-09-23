@@ -1,9 +1,5 @@
 <% include ../partials/header %>
 
-<% if(currentUser && currentUser.isAdmin){ %>
-    <h1>You're an admin!</h1>
-<% } %>
-
 <header class="jumbotron">
     <div class="container">
         <h1>Welcome to YelpCamp!</h1>
@@ -11,9 +7,22 @@
         <p>
             <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add a new Campground</a>
         </p>
+        <p>
+            <form action="/campgrounds" method="GET" class="form-inline">
+                <div class="form-group">
+                    <input type="text" name="search" placeholder="Campground search..." class="form-control">
+                    <input type="submit" name="Search" class="btn btn-primary">
+                </div>
+            </form>
+        </p>
     </div>
 </header>
 <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+    <div>
+        <% if(noMatch !== null){ %>
+            <h3><%= noMatch %></h3>
+        <% } %>
+    </div>
     <% campgrounds.forEach(function(campground){ %>
         <div class="col-lg-3 col-sm-6">
             <div class="card">
