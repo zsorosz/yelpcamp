@@ -20,7 +20,7 @@ var express         = require("express"),
 
 
 //mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true});
-mongoose.connect("mongodb+srv://dbAdmin:ElsoUser001@cluster0-pfkoi.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://dbAdmin:AdminUser2094@cluster0-pfkoi.mongodb.net/test?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useCreateIndex: true
 }).then(() => {
