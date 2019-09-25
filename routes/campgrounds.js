@@ -52,16 +52,17 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         id: req.user._id,
         username: req.user.username
     };
-    geocoder.geocode(req.body.location, function (err, data) {
-      if (err || !data.length) {
-        console.log(err);
-        req.flash('error', 'Invalid address');
-        return res.redirect('back');
-      }
-      var lat = data[0].latitude;
-      var lng = data[0].longitude;
-      var location = data[0].formattedAddress;
-      var newCampground = {name: name, image: image, description: desc, author:author, price:price, location: location, lat: lat, lng: lng};
+    // geocoder.geocode(req.body.location, function (err, data) {
+    //   if (err) {
+    //     console.log(err);
+    //     req.flash('error', 'Invalid address');
+    //     return res.redirect('/campgrounds');
+    //   }
+    //   var lat = data[0].latitude;
+    //   var lng = data[0].longitude;
+    //   var location = data[0].formattedAddress;
+      //var newCampground = {name: name, image: image, description: desc, author:author, price:price, location: location, lat: lat, lng: lng};
+      var newCampground = {name: name, image: image, description: desc, author:author, price:price};
       // Create a new campground and save to DB
       Campground.create(newCampground, function(err, newlyCreated){
           if(err){
@@ -71,7 +72,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
               console.log(newlyCreated);
               res.redirect("/campgrounds");
           }
-      });
+      //});
     });
 });
 
